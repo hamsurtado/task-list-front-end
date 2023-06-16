@@ -3,7 +3,7 @@ import './TaskList.js';
 import './Task.css';
 import React from 'react';
 
-const Task = ({ id, title, isComplete, updateComplete }) => {
+const Task = ({ id, title, isComplete, updateComplete, deleteTask }) => {
   const buttonClass = isComplete ? 'tasks__item__toggle--completed' : '';
 
   return (
@@ -14,7 +14,8 @@ const Task = ({ id, title, isComplete, updateComplete }) => {
       >
         {title}
       </button>
-      <button className="tasks__item__remove button">x</button>
+      <button className="tasks__item__remove button" 
+      onClick={() => deleteTask(id)}>x</button>
     </li>
   );
 };
@@ -23,7 +24,8 @@ Task.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   isComplete: PropTypes.bool.isRequired,
-  updateComplete: PropTypes.func.isRequired
+  updateComplete: PropTypes.func.isRequired,
+  deleteTask: PropTypes.func.isRequired
 };
 
 export default Task;
