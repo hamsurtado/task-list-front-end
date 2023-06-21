@@ -6,12 +6,13 @@ import './TaskList.css';
 const TaskList = ({ tasks, updateComplete, deleteTask}) => {
   const getTaskListJSX = (tasks) => {
     return tasks.map((task) => {
+      let completeStatus = task.is_complete;
       return (
         <Task
           key={task.id}
           id={task.id}
           title={task.title}
-          isComplete={task.isComplete}
+          isComplete={completeStatus}
           updateComplete={updateComplete}
           deleteTask={deleteTask}
         />
@@ -26,7 +27,7 @@ TaskList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      isComplete: PropTypes.bool.isRequired,
+      completeStatus: PropTypes.bool.isRequired,
     })
   ).isRequired,
   updateComplete: PropTypes.func.isRequired,
