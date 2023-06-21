@@ -31,7 +31,6 @@ TaskList.propTypes = {
   ).isRequired,
   updateComplete: PropTypes.func.isRequired,
   deleteTask: PropTypes.func.isRequired,
-  
 };
 
 export default TaskList;
