@@ -8,7 +8,7 @@ const INITIAL_TASK = {
     title: ""
 };
 
-const NewTaskForm = () => {
+const NewTaskForm = ({addTask}) => {
     const [formTask, setFormTask] = useState(INITIAL_TASK);
 
     const handleChange = (event) => {
@@ -22,6 +22,8 @@ const NewTaskForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        addTask(formTask);
+        setFormTask(INITIAL_TASK);
     };
 
     return (
@@ -47,6 +49,10 @@ const NewTaskForm = () => {
             <input type="submit" value="submit"/>
         </form>
     )
-}
+};
+
+NewTaskForm.propTypes = {
+    addTask: PropTypes.func.isRequired,
+  };
 
 export default NewTaskForm;

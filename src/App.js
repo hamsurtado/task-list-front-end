@@ -23,16 +23,32 @@ function App () {
   const [tasks, setTasks] = useState([]);
   const API = 'https://task-list-api-c17.onrender.com/tasks';
 
-  useEffect(() => {
-    axios.get(API)
+  const getAllTasks = () => {
+    axios
+    .get(API)
     .then((result) => {
-      console.log(result.data);
       setTasks(result.data);
     })
     .catch((err) => {
       console.log(err);
     });
+  };
+
+  useEffect(() => {
+    getAllTasks();
   }, []);
+
+  const postTask = (newTasks) => {
+    axios
+    .post(API, newTasks)
+    .then((result) => {
+      getAllTasks();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  };
 
   // Toggle complete feature
   const updateComplete = (id, isComplete) => {
@@ -74,7 +90,7 @@ function App () {
       </header>
       <main>
         <div>{<TaskList tasks={tasks} updateComplete={updateComplete} deleteTask={deleteTask}/>}</div>
-        <NewTaskForm />
+        <NewTaskForm addTask={postTask} />
       </main>
     </div>
   );
