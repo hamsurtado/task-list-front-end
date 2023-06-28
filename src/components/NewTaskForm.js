@@ -53,6 +53,6 @@ const NewTaskForm = ({addTask}) => {
 
 NewTaskForm.propTypes = {
     addTask: PropTypes.func.isRequired,
-  };
+};
 
 export default NewTaskForm;
